@@ -3,7 +3,6 @@ use crate::hex_dump_error::HexDumpError;
 use crate::struct_type::DecodeType;
 use core::fmt::Write;
 use core::result::Result;
-use core::error::Error;
 
 
 pub trait HexDump{
