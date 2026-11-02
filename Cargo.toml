@@ -7,7 +7,6 @@ author = "SoimanVasile"
 [lib]
 name = "hex_dump"
 path = "src/lib.rs"
-proc-macro = true
 
 
 [dependencies]
@@ -15,6 +14,7 @@ hex_dump_derive = {path = "hex_dump_derive"}
 hex_dump_core = {path = "hex_dump_core"}
 trybuild = "1.0.122"
 expand = "0.3.0"
+memmap2 = "0.9.12"
 
 [dev-dependencies]
 bytemuck = "1.19"
