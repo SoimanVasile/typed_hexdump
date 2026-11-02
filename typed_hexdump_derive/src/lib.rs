@@ -17,7 +17,7 @@ pub fn hex_dump_derive_macro(input: TokenStream) -> TokenStream{
 
 fn impl_hex_dump_macro(input: &DeriveInput) -> syn::Result<proc_macro2::TokenStream>{
     
-    check_attr::check_C_packed(input)?;
+    check_attr::check_c_packed(input)?;
 
 
     let fields = match &input.data{

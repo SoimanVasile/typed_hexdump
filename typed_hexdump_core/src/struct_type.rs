@@ -1,4 +1,3 @@
-use bytemuck::{Pod, Zeroable};
 use crate::value::Value;
 
 pub enum StructType{
@@ -37,13 +36,6 @@ impl StructType{
         }
     }
 
-    pub fn representation<T: Pod + Zeroable>(&self, bytes: &[u8]) -> Result<T, ()>{
-        if bytes.len() != size_of::<T>(){
-            return Err(());
-        }
-
-        Ok(*bytemuck::from_bytes(bytes))
-    }
     fn decode_ne(&self, bytes: &[u8])  -> Value  {
         macro_rules! native_endian{
             ($variant:ident, $t:ty) => {{
@@ -175,14 +167,4 @@ mod tests {
         assert_eq!(StructType::U32.decode(&bytes, DecodeType::NativeEndian), Value::U32(42));
     }
 
-    #[test]
-    fn test_representation() {
-        let bytes = 12345u32.to_ne_bytes();
-        let repr: Result<u32, ()> = StructType::U32.representation(&bytes);
-        assert_eq!(repr, Ok(12345u32));
-
-        let invalid_slice = &[0u8; 2];
-        let repr_err: Result<u32, ()> = StructType::U32.representation(invalid_slice);
-        assert_eq!(repr_err, Err(()));
-    }
 }

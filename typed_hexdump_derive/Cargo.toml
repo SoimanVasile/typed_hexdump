@@ -11,3 +11,6 @@ typed_hexdump_core = { path = "../typed_hexdump_core/", version = "0.1.0" }
 quote = "1.0"
 syn = { version = "2.0", features = ["extra-traits"] }
 proc-macro2 = "1.0"
+
+[lib]
+proc-macro = true

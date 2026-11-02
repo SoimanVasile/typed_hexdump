@@ -5,3 +5,5 @@ edition = "2024"
 license = "MIT"
 description = "Core types and binary decoders for typed-hexdump"
 repository = "https://github.com/SoimanVasile/typed_hexdump"
+
+[dependencies]

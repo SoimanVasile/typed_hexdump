@@ -1,6 +1,6 @@
 use syn::{DeriveInput, Error};
 
-pub fn check_C_packed(input: &DeriveInput) -> syn::Result<()>{
+pub fn check_c_packed(input: &DeriveInput) -> syn::Result<()>{
     let mut is_c = false;
     let mut is_packed = false;
     for attr in &input.attrs{
