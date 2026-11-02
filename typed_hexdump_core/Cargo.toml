@@ -2,6 +2,6 @@
 name = "typed_hexdump_core"
 version = "0.1.0"
 edition = "2024"
-
-[dependencies]
-bytemuck = { version = "1.25.2", features = ["derive"]}
+license = "MIT"
+description = "Core types and binary decoders for typed-hexdump"
+repository = "https://github.com/SoimanVasile/typed_hexdump"

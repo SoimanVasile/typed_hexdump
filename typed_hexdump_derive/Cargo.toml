@@ -2,12 +2,12 @@
 name = "typed_hexdump_derive"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
+description = "Derive macro for typed-hexdump"
+repository = "https://github.com/SoimanVasile/typed_hexdump"
 
 [dependencies]
-quote = "*"
-syn = { version = "*", features = ["extra-traits"]}
-proc-macro2 = "*"
-typed_hexdump_core = { path = "../typed_hexdump_core/"}
-
-[lib]
-proc-macro = true
+typed_hexdump_core = { path = "../typed_hexdump_core/", version = "0.1.0" }
+quote = "1.0"
+syn = { version = "2.0", features = ["extra-traits"] }
+proc-macro2 = "1.0"

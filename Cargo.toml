@@ -3,18 +3,19 @@ name = "typed-hexdump"
 version = "0.1.0"
 edition = "2024"
 authors = ["SoimanVasile"]
+license = "MIT"
+description = "A structured, schema-aware hex dump library"
+readme = "README.md"
+repository = "https://github.com/SoimanVasile/hexDump"
+
+[dependencies]
+typed_hexdump_core = { path = "typed_hexdump_core", version = "0.1.0" }
+typed_hexdump_derive = { path = "typed_hexdump_derive", version = "0.1.0" }
+memmap2 = "0.9.12"
 
 [lib]
 name = "typed_hexdump"
 path = "src/lib.rs"
-
-
-[dependencies]
-typed_hexdump_derive = {path = "typed_hexdump_derive"}
-typed_hexdump_core = {path = "typed_hexdump_core"}
-trybuild = "1.0.122"
-expand = "0.3.0"
-memmap2 = "0.9.12"
 
 [dev-dependencies]
 bytemuck = "1.19"
