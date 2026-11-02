@@ -7,3 +7,4 @@ description = "Core types and binary decoders for typed-hexdump"
 repository = "https://github.com/SoimanVasile/typed_hexdump"
 
 [dependencies]
+bytemuck = { version = "1.19", features = ["derive"] }

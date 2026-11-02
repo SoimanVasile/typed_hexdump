@@ -78,4 +78,4 @@ fn main() {
 
 ## License
 
-Licensed under either of [Apache License, Version 2.0](LICENSE-APACHE) or [MIT License](LICENSE-MIT) at your option.
+This project is licensed under the [MIT License](LICENSE).
