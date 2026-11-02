@@ -3,7 +3,6 @@ use quote::quote;
 use syn::{Data, DeriveInput, Fields, Type};
 
 mod check_attr;
-mod check_fields;
 
 #[proc_macro_derive(HexDump)]
 pub fn hex_dump_derive_macro(input: TokenStream) -> TokenStream{
@@ -32,6 +31,7 @@ fn impl_hex_dump_macro(input: &DeriveInput) -> syn::Result<proc_macro2::TokenStr
 
     
     let mut offset: usize = 0;
+    let mut self_size: usize = 0;
     let entries = fields
         .iter()
         .map(|field| -> syn::Result<proc_macro2::TokenStream> {
@@ -64,6 +64,7 @@ fn impl_hex_dump_macro(input: &DeriveInput) -> syn::Result<proc_macro2::TokenStr
             };
 
             offset += size;
+            self_size += size;
             
             Ok(quote! {
                 ::hex_dump_core::hex_dump_field_info::FieldInfo {
@@ -77,13 +78,11 @@ fn impl_hex_dump_macro(input: &DeriveInput) -> syn::Result<proc_macro2::TokenStr
 
     let name = &input.ident;
     Ok(quote! {
-        unsafe impl ::bytemuck::Zeroable for #name{}
-        unsafe impl ::bytemuck::Pod for #name{}
-
-        impl ::hex_dump_core::hex_dump_trait::HexDump for #name{
+        impl ::hex_dump::hex_dump_trait::HexDump for #name{
             const FIELDS: &'static [::hex_dump_core::hex_dump_field_info::FieldInfo] = &[
                 #(#entries),*
             ];
+            const SELF_SIZE: usize = #self_size;
         }
     })
 }
