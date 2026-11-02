@@ -1,8 +1,8 @@
 
-use hex_dump_core::hex_dump_field_info::FieldInfo;
+use typed_hexdump_core::hex_dump_field_info::FieldInfo;
 use crate::hex_dump_error::HexDumpError;
 use crate::parse_options::ParseStruct;
-use hex_dump_core::struct_type::DecodeType;
+use typed_hexdump_core::struct_type::DecodeType;
 use crate::mmap::create_mmap;
 use core::fmt::Write;
 use core::result::Result;

@@ -1,5 +1,5 @@
 [package]
-name = "hex_dump_core"
+name = "typed_hexdump_core"
 version = "0.1.0"
 edition = "2024"
 

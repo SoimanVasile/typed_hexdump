@@ -1,5 +1,5 @@
 [package]
-name = "hex_dump_derive"
+name = "typed_hexdump_derive"
 version = "0.1.0"
 edition = "2024"
 
@@ -7,7 +7,7 @@ edition = "2024"
 quote = "*"
 syn = { version = "*", features = ["extra-traits"]}
 proc-macro2 = "*"
-hex_dump_core = { path = "../hex_dump_core/"}
+typed_hexdump_core = { path = "../typed_hexdump_core/"}
 
 [lib]
 proc-macro = true

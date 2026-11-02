@@ -50,16 +50,16 @@ fn impl_hex_dump_macro(input: &DeriveInput) -> syn::Result<proc_macro2::TokenStr
             };
 
             let struct_type = match primitive_type.as_str() {
-                "u8"  => { size = 1; quote! { ::hex_dump_core::struct_type::StructType::U8 }} ,
-                "u16" => { size = 2; quote! { ::hex_dump_core::struct_type::StructType::U16 }},
-                "u32" => { size = 4; quote! { ::hex_dump_core::struct_type::StructType::U32 }},
-                "u64" => { size = 8; quote! { ::hex_dump_core::struct_type::StructType::U64 }},
-                "i8"  => { size = 1; quote! { ::hex_dump_core::struct_type::StructType::I8 }},
-                "i16" => { size = 2; quote! { ::hex_dump_core::struct_type::StructType::I16 }},
-                "i32" => { size = 4; quote! { ::hex_dump_core::struct_type::StructType::I32 }},
-                "i64" => { size = 8; quote! { ::hex_dump_core::struct_type::StructType::I64 }},
-                "f32" => { size = 4; quote! { ::hex_dump_core::struct_type::StructType::F32 }},
-                "f64" => { size = 8; quote! { ::hex_dump_core::struct_type::StructType::F64 }},
+                "u8"  => { size = 1; quote! { ::typed_hexdump_core::struct_type::StructType::U8 }} ,
+                "u16" => { size = 2; quote! { ::typed_hexdump_core::struct_type::StructType::U16 }},
+                "u32" => { size = 4; quote! { ::typed_hexdump_core::struct_type::StructType::U32 }},
+                "u64" => { size = 8; quote! { ::typed_hexdump_core::struct_type::StructType::U64 }},
+                "i8"  => { size = 1; quote! { ::typed_hexdump_core::struct_type::StructType::I8 }},
+                "i16" => { size = 2; quote! { ::typed_hexdump_core::struct_type::StructType::I16 }},
+                "i32" => { size = 4; quote! { ::typed_hexdump_core::struct_type::StructType::I32 }},
+                "i64" => { size = 8; quote! { ::typed_hexdump_core::struct_type::StructType::I64 }},
+                "f32" => { size = 4; quote! { ::typed_hexdump_core::struct_type::StructType::F32 }},
+                "f64" => { size = 8; quote! { ::typed_hexdump_core::struct_type::StructType::F64 }},
                 _ => return Err(syn::Error::new_spanned(ty, "unsupported field type")),
             };
 
@@ -67,7 +67,7 @@ fn impl_hex_dump_macro(input: &DeriveInput) -> syn::Result<proc_macro2::TokenStr
             self_size += size;
             
             Ok(quote! {
-                ::hex_dump_core::hex_dump_field_info::FieldInfo {
+                ::typed_hexdump_core::hex_dump_field_info::FieldInfo {
                     name: stringify!(#ident),
                     type_field: #struct_type,
                     offset: #offset - #size,
@@ -78,8 +78,8 @@ fn impl_hex_dump_macro(input: &DeriveInput) -> syn::Result<proc_macro2::TokenStr
 
     let name = &input.ident;
     Ok(quote! {
-        impl ::hex_dump::hex_dump_trait::HexDump for #name{
-            const FIELDS: &'static [::hex_dump_core::hex_dump_field_info::FieldInfo] = &[
+        impl ::typed_hexdump::hex_dump_trait::HexDump for #name{
+            const FIELDS: &'static [::typed_hexdump_core::hex_dump_field_info::FieldInfo] = &[
                 #(#entries),*
             ];
             const SELF_SIZE: usize = #self_size;

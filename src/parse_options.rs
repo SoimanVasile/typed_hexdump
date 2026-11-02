@@ -1,6 +1,6 @@
 use std::path::PathBuf;
 
-use hex_dump_core::struct_type::DecodeType;
+use typed_hexdump_core::struct_type::DecodeType;
 
 use crate::hex_dump_error::HexDumpError;
 
@@ -21,6 +21,26 @@ impl ParseStruct{
             counter: 1,
             decode_type: DecodeType::NativeEndian,
         }
+    }
+
+    pub fn path(&self) -> &PathBuf {
+        &self.path
+    }
+
+    pub fn offset(&self) -> u64 {
+        self.offset
+    }
+
+    pub fn length(&self) -> u64 {
+        self.length
+    }
+
+    pub fn counter(&self) -> u64 {
+        self.counter
+    }
+
+    pub fn decode_type(&self) -> DecodeType {
+        self.decode_type
     }
 
     fn from_parse_options(parse_options: ParseOptions) -> Result<Self, HexDumpError>{

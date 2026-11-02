@@ -24,3 +24,25 @@ impl fmt::Display for Value {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_value_display() {
+        assert_eq!(Value::U8(10).to_string(), "10");
+        assert_eq!(Value::U16(1000).to_string(), "1000");
+        assert_eq!(Value::U32(100000).to_string(), "100000");
+        assert_eq!(Value::U64(10000000000).to_string(), "10000000000");
+
+        assert_eq!(Value::I8(-5).to_string(), "-5");
+        assert_eq!(Value::I16(-500).to_string(), "-500");
+        assert_eq!(Value::I32(-50000).to_string(), "-50000");
+        assert_eq!(Value::I64(-5000000000).to_string(), "-5000000000");
+
+        assert_eq!(Value::F32(2.5).to_string(), "2.5");
+        assert_eq!(Value::F64(3.1415).to_string(), "3.1415");
+    }
+}
+
